@@ -6,13 +6,7 @@ var init = function () {
 		var redisURI 		= require('url').parse(process.env.REDIS_URL);
 		var redisPassword 	= redisURI.auth.split(':')[1];
 		return {
-			db: {
-				username: process.env.dbUsername,
-				password: process.env.dbPassword,
-				host: process.env.dbHost,
-				port: process.env.dbPort,
-				name: process.env.dbName
-			},
+			db: process.env.MONGODB_URI,
 			sessionSecret: process.env.sessionSecret,
 			redis: {
 				host: redisURI.hostname,
