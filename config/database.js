@@ -5,14 +5,7 @@ var Mongoose 	= require('mongoose');
 var logger 		= require('./logger');
 var config  = require('./config');
 
-var dbURI = "mongodb://" + 
-			encodeURIComponent(config.db.username) + ":" + 
-			encodeURIComponent(config.db.password) + "@" + 
-			config.db.host + ":" + 
-			config.db.port + "/" + 
-			config.db.name;
-
-Mongoose.connect(dbURI);
+Mongoose.connect(config.db.MONGODB_URI);
 
 
 Mongoose.connection.on('error', function(err) {
