@@ -2,9 +2,18 @@
 'use strict';
 
 var Mongoose 	= require('mongoose');
-var logger 		= require('logger');
+var logger 		= require('./logger');
+var config  = require('./config');
 
-Mongoose.connect('mongodb://localhost/chat' );
+var dbURI = "mongodb://" + 
+			encodeURIComponent(config.db.username) + ":" + 
+			encodeURIComponent(config.db.password) + "@" + 
+			config.db.host + ":" + 
+			config.db.port + "/" + 
+			config.db.name;
+
+Mongoose.connect(dbURI);
+
 
 Mongoose.connection.on('error', function(err) {
 	if(err) throw err;
