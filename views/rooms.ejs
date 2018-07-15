@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/css/room.css" rel="stylesheet"/>
+<title>ChatApp</title>
+</head>
+<body>
+
+<div class="timeline">
+  <div class="container left">
+    <div class="content">
+          <a href="/logout" class="btn btn-danger" style="width: auto; padding: 13px; font-size: 12px;">Logout</a>
+          <input type="text" name="title" autofocus placeholder ="Type a new room">
+		  <div class="room-create"></div>
+          <button class="btn btn-danger" id="crt">Create</button> 
+	 </div>
+  </div>
+  <%if(rooms.length>=1){%>
+   <%rooms.forEach(function(room,index){%>
+     <%if(index%2==0){%>
+	   <div class="container right">
+	   <div class="content">
+	    <h2><%=room.title%></h2>
+		<a href="/chat/<%=room.id%>"><button>Join Room</button></a>
+		</div>
+		</div>
+		<%}else{%>
+		<div class="container left">
+	   <div class="content">
+	    <h2><%=room.title%></h2>
+		<a href="/chat/<%=room.id%>"><button>Join Room</button></a>
+		</div>
+		</div>
+		<%}});}%>
+	 
+</div>
+<script src='/js/libs/jquery-3.3.1.min.js'></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/main.js"></script>
+<script>$(function(){app.rooms()});</script>
+</body>
+</html>
