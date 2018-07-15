@@ -13,7 +13,12 @@ var init = function () {
 				port: process.env.dbPort,
 				name: process.env.dbName
 			},
-			sessionSecret: process.env.sessionSecret,			
+			sessionSecret: process.env.sessionSecret,
+			redis: {
+				host: redisURI.hostname,
+				port: redisURI.port,
+				password: redisPassword
+			}
 		}
 	}
 	
