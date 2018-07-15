@@ -2,7 +2,7 @@
 
 var redis 	= require('redis').createClient;
 var adapter = require('socket.io-redis');
-
+var config = require('./config');
 var Room = require('./room');
 
 /**
@@ -124,9 +124,9 @@ var init = function(app){
 	io.set('transports', ['websocket']);
 
 	// Using Redis
-	let port = 6379;
-	let host = "127.0.0.1";
-	let password = "";
+	let port = config.redis.port;
+	let host = config.redis.host;
+	let password = config.redis.password;
 	let pubClient = redis(port, host, { auth_pass: password });
 	let subClient = redis(port, host, { auth_pass: password, return_buffers: true, });
 	io.adapter(adapter({ pubClient, subClient }));
